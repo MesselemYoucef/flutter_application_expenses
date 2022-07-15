@@ -9,20 +9,19 @@ import './adaptive_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function _addNewTransactions;
 
-  NewTransaction(this._addNewTransactions){
+  NewTransaction(this._addNewTransactions) {
     print("Constructor new transaction widget");
   }
 
   @override
-  State<NewTransaction> createState(){
+  State<NewTransaction> createState() {
     print("Create State New Transaction Widget");
     return _NewTransactionState();
-  } 
+  }
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-
-  _NewTransactionState(){
+  _NewTransactionState() {
     print("_NewTransactionState Constructor ");
   }
 
@@ -36,8 +35,6 @@ class _NewTransactionState extends State<NewTransaction> {
   @override
   void didUpdateWidget(covariant NewTransaction oldWidget) {
     // TODO: implement didUpdateWidget
-    
-    
     super.didUpdateWidget(oldWidget);
     print("didUpdateWidget() got called");
   }

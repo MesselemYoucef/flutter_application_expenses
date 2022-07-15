@@ -2,10 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+
 import './widgets/new_transaction.dart';
 import './widgets/chart.dart';
-
 import './models/transaction.dart';
 import './widgets/transaction_list.dart';
 
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
             ),
         fontFamily: "OpenSans",
         textTheme: ThemeData.light().textTheme.copyWith(
-              titleSmall: TextStyle(
+              titleSmall: const TextStyle(
                   fontFamily: "OpenSans",
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -57,9 +56,30 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _userTransactions = [];
   bool _showChart = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // TODO: implement didChangeAppLifecycleState
+    super.didChangeAppLifecycleState(state);
+    print("This is the state of the app now: ${state}");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   void _addNewTransactions(String title, double amount, DateTime chosenDate) {
     final newTx = Transaction(
